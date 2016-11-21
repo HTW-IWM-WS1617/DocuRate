@@ -1,0 +1,7 @@
+base   dokurate
+author Gruppe DokuRate
+email  htw_docurate@fraunhofer.de
+date   2016-11-21
+name   dokurate plugin
+desc   Rate plugin for dokuwiki
+url    http://www.dokuwiki.org/plugin:dokurate
