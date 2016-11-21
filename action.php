@@ -11,6 +11,26 @@ if(!defined('DOKU_INC')) die();
 
 class action_plugin_dokurate extends DokuWiki_Action_Plugin {
 
+    var $parameter = "";
+
+    /**
+     * return some info
+     */
+    function getInfo(){
+        return array(
+            'author' => 'Gruppe 2',
+            'email'  => 'htw_dokurate@fraunhofer.de',
+            'date'   => '2016-11-20',
+            'name'   => 'Dokurate)',
+            'desc'   => 'Easy rating plugin for dokuwiki',
+            'url'    => 'http://www.dokuwiki.org/plugin:dokurate',
+        );
+    }
+
+
+
+class action_plugin_dokurate extends DokuWiki_Action_Plugin {
+
     /**
      * Registers a callback function for a given event
      *
