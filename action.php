@@ -9,8 +9,11 @@
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
 
-class action_plugin_dokurate extends DokuWiki_Action_Plugin {
 
+
+class action_plugin_dokurate extends DokuWiki_Action_Plugin {
+	
+	
     var $parameter = "";
 
     /**
@@ -26,10 +29,6 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
             'url'    => 'http://www.dokuwiki.org/plugin:dokurate',
         );
     }
-
-
-
-class action_plugin_dokurate extends DokuWiki_Action_Plugin {
 
     /**
      * Registers a callback function for a given event
