@@ -1,1 +1,1 @@
-# DocuRate
+# dokurate
