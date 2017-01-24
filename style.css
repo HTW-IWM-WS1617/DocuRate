@@ -1,0 +1,53 @@
+.rating-stars,
+.rating-stars label::before
+{
+    display: inline-block;
+}
+
+.rating-stars label:hover,
+.rating-stars label:hover ~ label
+{
+    color: #f5b301;
+}
+
+.rating-stars *
+{
+    margin: 0;
+    padding: 0;
+}
+
+.rating-stars input
+{
+    display: none;
+}
+
+.rating-stars
+{
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.rating-stars label
+{
+    color: #ccc;
+}
+
+.rating-stars label::before
+{
+    content: "\2605";
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.rating-stars input:checked ~ label
+{
+    color: #f5b301;
+}
+
+.rating-t label::before
+{
+
+}
