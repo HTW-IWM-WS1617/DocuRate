@@ -1,7 +1,0 @@
-base   dokurate2
-author Gruppe HTWdokurate2
-email  tillbussmann@googlemail.com
-date   2017-01-24
-name   dokurate2 plugin
-desc   Rating Plugin
-url    http://www.htw-berlin.de
