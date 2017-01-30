@@ -12,23 +12,7 @@ if(!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
 require_once(DOKU_PLUGIN.'action.php');
 
 class action_plugin_dokurate extends DokuWiki_Action_Plugin {
-	
-	
-    var $parameter = "";
 
-    /**
-     * return some info
-     */
-    function getInfo(){
-        return array(
-            'author' => 'Gruppe 2',
-            'email'  => 'htw_dokurate@fraunhofer.de',
-            'date'   => '2016-11-20',
-            'name'   => 'Dokurate)',
-            'desc'   => 'Easy rating plugin for dokuwiki',
-            'url'    => 'http://www.dokuwiki.org/plugin:dokurate',
-        );
-    }
 
     /**
      * Registers a callback function for a given event
@@ -40,7 +24,8 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
 
        $controller->register_hook('ACTION_ACT_PREPROCESS', 'FIXME', $this, 'handle_action_act_preprocess');
        $controller->register_hook('TPL_ACT_UNKNOWN', 'FIXME', $this, 'handle_tpl_act_unknown');
-   
+			 $controller->register_hook('TPL_ACT_RENDER', 'BEFORE', $this, 'Call');
+
     }
 
     /**
@@ -52,6 +37,14 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
      * @return void
      */
 
+		 public function Call(Doku_Event &$event, $param) {
+		     //if($event->data != 'Call') return;
+		       //$event->preventDefault();
+		       $dokurate2 = plugin_load('helper','dokurate2');
+		       if($dokurate2) echo $dokurate2->dokurate2_display();
+		     }
+
+
     public function handle_action_act_preprocess(Doku_Event &$event, $param) {
     }
 
@@ -59,5 +52,3 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
     }
 
 }
-
-// vim:ts=4:sw=4:et:
