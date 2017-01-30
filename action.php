@@ -40,8 +40,8 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
 		 public function Call(Doku_Event &$event, $param) {
 		     //if($event->data != 'Call') return;
 		       //$event->preventDefault();
-		       $dokurate2 = plugin_load('helper','dokurate2');
-		       if($dokurate2) echo $dokurate2->dokurate2_display();
+		       $dokurate = plugin_load('helper','dokurate');
+		       if($dokurate) echo $dokurate->dokurate_display();
 		     }
 
 

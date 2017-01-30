@@ -1,17 +1,17 @@
 <?php
 /**
- * DokuWiki Plugin dokurate2 (Helper Component)
+ * DokuWiki Plugin dokurate (Helper Component)
  *
  * @license GPL 2 http://www.gnu.org/licenses/gpl-2.0.html
- * @author  Gruppe HTWdokurate2 <tillbussmann@googlemail.com>
+ * @author  Gruppe HTWdokurate <tillbussmann@googlemail.com>
  */
 
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
 
-class helper_plugin_dokurate2 extends DokuWiki_Plugin {
+class helper_plugin_dokurate extends DokuWiki_Plugin {
 
-  public function dokurate2_display()
+  public function dokurate_display()
   {
   //display 5 star rating form in html
       echo '<div class="rating-stars">';
@@ -22,7 +22,7 @@ class helper_plugin_dokurate2 extends DokuWiki_Plugin {
       echo '<input type="radio" name="group-1" id="group-1-3" value="4" /><label  for="group-1-3"><a href=' . wl($ID, array('rating' => 4)) . '" class="plugin_rating_stars' . ' data-rating="4"></a></label>';
       echo '<input type="radio" name="group-1" id="group-1-4"  value="5" /><label for="group-1-4"><a href=' . wl($ID, array('rating' => 5)) . '" class="plugin_rating_stars' . ' data-rating="5"></a></label>';
       echo '</div>';
-  
+
   }
 
     /**
