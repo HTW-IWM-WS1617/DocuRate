@@ -11,6 +11,10 @@ if(!defined('DOKU_INC')) die();
 
 class helper_plugin_dokurate extends DokuWiki_Plugin {
 
+  /** @var helper_plugin_sqlite */
+  protected $sqlite = null;
+
+
   public function dokurate_display()
   {
   //display 5 star rating form in html
@@ -26,25 +30,57 @@ class helper_plugin_dokurate extends DokuWiki_Plugin {
   }
 
     /**
-     * Return info about supported methods in this Helper Plugin
+     * initializes the DB connection
      *
-     * @return array of public methods
+     * @return helper_plugin_sqlite|null
      */
-    public function getMethods() {
-        return array(
-            array(
-                'name'   => 'getThreads',
-                'desc'   => 'returns pages with discussion sections, sorted by recent comments',
-                'params' => array(
-                    'namespace'         => 'string',
-                    'number (optional)' => 'integer'
-                ),
-                'return' => array('pages' => 'array')
-            ),
-            array(
-                // and more supported methods...
-            )
-        );
+    public function getDBHelper() {
+        if(!is_null($this->sqlite)) return $this->sqlite;
+
+        $this->sqlite = plugin_load('helper', 'sqlite');
+        if(!$this->sqlite) {
+            msg('The rating plugin requires the sqlite plugin', -1);
+            $this->sqlite = null;
+            return null;
+        }
+
+        $ok = $this->sqlite->init('dbdokurate', __DIR__ . '/db');
+        if(!$ok) {
+            msg('rating plugin sqlite initialization failed', -1);
+            $this->sqlite = null;
+            return null;
+        }
+
+        return $this->sqlite;
     }
+
+
+    public function ratepage($rate, $page) {
+
+        $sqlite = $this->getDBHelper();
+        if(!$sqlite) return;
+
+        // ignore any bot accesses
+        /**if(!class_exists('Jaybizzle\CrawlerDetect\CrawlerDetect')){
+            require (__DIR__ . '/CrawlerDetect.php');
+        }
+        $CrawlerDetect = new Jaybizzle\CrawlerDetect\CrawlerDetect();
+        if($CrawlerDetect->isCrawler()) return;
+    */
+        $translation = plugin_load('helper', 'translation');
+        if (!$translation) {
+            $lang = '';
+        } else {
+            $lang = $translation->getLangPart($page);
+        }
+
+        $date = date('Y-m-d');
+
+        $sql = "INSERT OR REPLACE INTO ratings (page, rater, lang, date, value) VALUES (?, ?, ?, ?, ?)";
+        $sqlite->query($sql, $page, $this->userID(), $lang, $date, $rate);
+    }
+    }
+
+
 
 }

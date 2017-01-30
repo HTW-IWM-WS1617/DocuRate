@@ -22,9 +22,10 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
      */
     public function register(Doku_Event_Handler $controller) {
 
-       $controller->register_hook('ACTION_ACT_PREPROCESS', 'FIXME', $this, 'handle_action_act_preprocess');
-       $controller->register_hook('TPL_ACT_UNKNOWN', 'FIXME', $this, 'handle_tpl_act_unknown');
+       //$controller->register_hook('ACTION_ACT_PREPROCESS', 'FIXME', $this, 'handle_action_act_preprocess');
+       //$controller->register_hook('TPL_ACT_UNKNOWN', 'FIXME', $this, 'handle_tpl_act_unknown');
 			 $controller->register_hook('TPL_ACT_RENDER', 'BEFORE', $this, 'Call');
+			 $controller->register_hook('DOKUWIKI_STARTED', 'AFTER', $this, 'handle_vote');
 
     }
 
@@ -45,10 +46,25 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
 		     }
 
 
-    public function handle_action_act_preprocess(Doku_Event &$event, $param) {
-    }
+		public function handle_vote(Doku_Event &$event, $param) {
+	 	        global $INPUT;
+	 	        global $ID;
+	 	        if(!$INPUT->has('rating')) return;
 
-    public function handle_tpl_act_unknown(Doku_Event &$event, $param) {
-    }
+	 	        $rate = $INPUT->int('rating');
 
+	 	        /** @var helper_plugin_rating $hlp */
+	 	        $hlp = plugin_load('helper', 'dokurate');
+	 	        $hlp->ratepage($rate, $ID);
+	 	    }
+
+
+				 /**
+    *public function handle_action_act_preprocess(Doku_Event &$event, $param) {
+    *}
+
+    *public function handle_tpl_act_unknown(Doku_Event &$event, $param) {
+    *}
+
+*/
 }
