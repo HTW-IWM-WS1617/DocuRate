@@ -67,4 +67,4 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
     *}
 
 */
-//}
+}

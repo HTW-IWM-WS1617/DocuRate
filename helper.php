@@ -94,5 +94,5 @@ class helper_plugin_dokurate extends DokuWiki_Plugin {
         //$sql = "INSERT OR REPLACE INTO ratings (page, lang, date, value) VALUES (?, ?, ?, ?, ?)";
         //$sqlite->query($sql, $page, $this->userID(), $lang, $date, $rate);
     //}
-    //}
+    }
     }
