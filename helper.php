@@ -62,18 +62,18 @@ class helper_plugin_dokurate extends DokuWiki_Plugin {
         }
 
       //init db
-      if(!sqlite->init('dokurate',DOKU_PLUGIN.'dokurate/db/')){
+      if(!$sqlite->init('dokurate',DOKU_PLUGIN.'dokurate/db/')){
         return;
       }
 
     }
 
-
     public function ratepage($rate, $page) {
 
-        $sqlite = $this->getDBHelper();
-        if(!$sqlite) return;
+        $sqlite = $this->DBinit();
         msg('DB gestartet');
+        if(!$sqlite) return;
+
 
         // ignore any bot accesses
         /**if(!class_exists('Jaybizzle\CrawlerDetect\CrawlerDetect')){
@@ -93,9 +93,6 @@ class helper_plugin_dokurate extends DokuWiki_Plugin {
 
         //$sql = "INSERT OR REPLACE INTO ratings (page, lang, date, value) VALUES (?, ?, ?, ?, ?)";
         //$sqlite->query($sql, $page, $this->userID(), $lang, $date, $rate);
+    //}
+    //}
     }
-    }
-
-
-
-}
