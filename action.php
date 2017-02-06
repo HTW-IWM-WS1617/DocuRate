@@ -22,9 +22,8 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
      */
     public function register(Doku_Event_Handler $controller) {
 
-       $controller->register_hook('ACTION_ACT_PREPROCESS', 'FIXME', $this, 'handle_action_act_preprocess');
-       $controller->register_hook('TPL_ACT_UNKNOWN', 'FIXME', $this, 'handle_tpl_act_unknown');
-			 $controller->register_hook('TPL_ACT_RENDER', 'BEFORE', $this, 'Call');
+
+			 $controller->register_hook('TPL_ACT_RENDER', 'BEFORE', $this, 'ShowStars');
 
     }
 
@@ -37,7 +36,7 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
      * @return void
      */
 
-		 public function Call(Doku_Event &$event, $param) {
+		 public function ShowStars(Doku_Event &$event, $param) {
 		     //if($event->data != 'Call') return;
 		       //$event->preventDefault();
 		       $dokurate = plugin_load('helper','dokurate');
@@ -45,10 +44,5 @@ class action_plugin_dokurate extends DokuWiki_Action_Plugin {
 		     }
 
 
-    public function handle_action_act_preprocess(Doku_Event &$event, $param) {
-    }
-
-    public function handle_tpl_act_unknown(Doku_Event &$event, $param) {
-    }
 
 }

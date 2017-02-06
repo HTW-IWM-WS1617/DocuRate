@@ -25,6 +25,17 @@ class helper_plugin_dokurate extends DokuWiki_Plugin {
 
   }
 
+  public function getDB(){
+
+
+      $sqlite = plugin_load('helper', 'sqlite');
+      if(!$sqlite){
+      msg('This plugin requires the sqlite plugin. Please install it', -1);
+      return;
+    }
+      $sqlite->init('dbdb', __DIR__.'/db/');
+    }
+
     /**
      * Return info about supported methods in this Helper Plugin
      *

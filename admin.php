@@ -11,11 +11,13 @@ if(!defined('DOKU_INC')) die();
 
 class admin_plugin_dokurate extends DokuWiki_Admin_Plugin {
 
+    private $hlp;
+
     /**
      * @return int sort number in admin menu
      */
     public function getMenuSort() {
-        return FIXME;
+        return 400;
     }
 
     /**
@@ -29,6 +31,8 @@ class admin_plugin_dokurate extends DokuWiki_Admin_Plugin {
      * Should carry out any processing required by the plugin.
      */
     public function handle() {
+      $this->hlp = plugin_load('helper', 'dokurate');
+      $this->hlp->getDB();
     }
 
     /**
